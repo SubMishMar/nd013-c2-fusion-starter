@@ -1,3 +1,11 @@
 dataset/*
 tools/objdet_models/darknet/pretrained/*
 tools/objdet_models/resnet/pretrained/*
+misc/__pycache__/*
+results/*
+student/__pycache__/*
+tools/objdet_models/darknet/models/__pycache__/*
+tools/objdet_models/darknet/utils/__pycache__/*
+tools/objdet_models/resnet/models/__pycache__/*
+tools/objdet_models/resnet/utils/__pycache__/*
+tools/waymo_reader/simple_waymo_open_dataset_reader/__pycache__/*
