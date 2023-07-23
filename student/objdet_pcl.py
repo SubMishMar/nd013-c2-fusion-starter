@@ -15,6 +15,7 @@ import cv2
 import numpy as np
 import torch
 import zlib
+import open3d
 
 # add project directory to python path to enable relative imports
 import os
@@ -37,14 +38,38 @@ def show_pcl(pcl):
     ####### ID_S1_EX2 START #######
     #######
     print("student task ID_S1_EX2")
+    def next_frame_callback(vis_lidar_pointcloud):
+        vis_lidar_pointcloud.close()
+        global show_pointcloud_window
+        show_pointcloud_window = True
+
+    def exit_callback(vis_lidar_pointcloud):
+        vis_lidar_pointcloud.close()
+        global show_pointcloud_window
+        show_pointcloud_window = False
 
     # step 1 : initialize open3d with key callback and create window
+    vis = open3d.visualization.VisualizerWithKeyCallback()
+    # Press right arrow to exit
+    vis.register_key_callback(262, exit_callback)
+    # Press space bar to continue to next frame
+    vis.register_key_callback(32, next_frame_callback)
+    vis.create_window(window_name="Point Cloud", visible=True)
 
     # step 2 : create instance of open3d point-cloud class
+    pcd = open3d.geometry.PointCloud()
 
     # step 3 : set points in pcd instance by converting the point-cloud into 3d vectors (using open3d function Vector3dVector)
+    pcd.points = open3d.utility.Vector3dVector(pcl[:, 0:3])
 
     # step 4 : for the first frame, add the pcd instance to visualization using add_geometry; for all other frames, use update_geometry instead
+    vis.add_geometry(pcd)
+    vis.run()
+    try:
+        return show_pointcloud_window
+    except NameError as e:
+        return True
+
 
     # step 5 : visualize point cloud and keep window open until right-arrow is pressed (key-code 262)
 

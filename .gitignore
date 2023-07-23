@@ -9,3 +9,5 @@ tools/objdet_models/darknet/utils/__pycache__/*
 tools/objdet_models/resnet/models/__pycache__/*
 tools/objdet_models/resnet/utils/__pycache__/*
 tools/waymo_reader/simple_waymo_open_dataset_reader/__pycache__/*
+*.json
+*.png
