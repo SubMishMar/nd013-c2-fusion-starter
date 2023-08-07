@@ -131,3 +131,9 @@ Parts of this project are based on the following repositories:
 
 ## License
 [License](LICENSE.md)
+
+## Brief Write Up.
+[Video for Sequence 1](https://youtu.be/i83NX2puoOU)
+[Video for Sequence 3](https://youtu.be/nlmbHzBy6-w)
+
+We can see objected detection in action in sequences 1 and 3 in the videos above. From my experience each vehicle can be characteristically distinguished by it's edges - front/back and both sides. The density of lidar points on these objects' edges are higher for the ones closer to the ego vehicle and they drop as we move farther. In sequence 1 there are only a few vehicles in the ego vehicle's field of view and therefore the object detection runs quickly without much latency whereas in the sequence 3 there are several vehicles in the scene so object detection takes longer. Moreover, I noticed that the object detection gave decent detection for vehicles which were located mid way - not too close or not too far. In fact in they were unable to detect closest vehicle in sequence 3. Also, detection of large vehicles like bus or semi was not successful - probably because the model is overfit for vehicles of the median size. Lastly, the model was able to correctly detect yaw of vehicles parallel or anti-parallel to the ego vehicle's driving direction. It often failed to give good orientation for vehicles farther away with non parallel/anti-parallel orientations. There are several vehicles of varying sizes going out and coming into the ego vehicle's field of view but it was able to correctly detect standard sized vehicles only and that those which were driving away or towards it in parallel or anti-parallel directions.
